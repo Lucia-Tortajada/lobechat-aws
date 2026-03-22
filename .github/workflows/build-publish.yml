@@ -9,7 +9,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: oriolrius/lobechat
+  IMAGE_NAME: lucia-tortajada/lobechat-aws
 
 jobs:
   build-and-push:
