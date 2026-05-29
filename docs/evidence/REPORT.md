@@ -1,19 +1,4 @@
-<!--
-  REPORT.md — Final Project evidence file.
 
-  Rules:
-  - Keep it ≤ 2 printed pages.
-  - All screenshots embedded inline (commit PNGs next to this file).
-  - All command outputs pasted as fenced code blocks, captured with `tee`
-    (not retyped). Keep timestamps visible.
-  - Identity binding: in every screenshot, your ESADE email AND the public
-    HTTPS URL must be visible in the same frame (browser tab, terminal
-    prompt, or watermark).
-  - URL must be reachable until 24 h after the exam day. Down = practical 0.
-  - Missing item = -5% on practical, each.
-
-  Replace every `TODO` and remove these HTML comments before submitting.
--->
 
 # Final Project — Evidence Report
 
@@ -21,76 +6,67 @@
 
 | Field | Value |
 |---|---|
-| Student name | TODO |
-| ESADE email | TODO |
-| GitHub repo URL | TODO (must be **private**; user `joseporiolrius` invited as collaborator) |
-| Latest commit SHA | TODO (`git rev-parse HEAD`) |
-| Final tag | TODO (`final-vX.Y.Z`) |
+| Student name | Lucia Tortajada Valenti |
+| ESADE email | lucia.tortajada@alumni.esade.edu |
+| GitHub repo URL | https://github.com/Lucia-Tortajada/lobechat-aws |
+| Latest commit SHA | 645b9d8f7985e7e7a3aeb546f069ef7d7ec7e65f |
+| Final tag | final-v1.0.0 |
 
 ## 2. Public URL
 
-<!-- Grader clicks. If down or HTTP, practical = 0. -->
 
-**[https://TODO](https://TODO)**
+**[https://52-211-99-217.sslip.io]**
 
 ## 3. Screenshot — LobeChat over HTTPS, logged in
 
-<!--
-  Frame must show:
-    - browser address bar with padlock + the public HTTPS URL
-    - LobeChat home page after Casdoor login
-    - your ESADE email visible (browser profile, account menu, or terminal
-      next to the browser with the prompt)
-  Commit as: lobechat-https.png
--->
 
-![lobechat-https](lobechat-https.png)
+
+![LobeChat over HTTPS logged in](./lobechat-https.png)
 
 ## 4. Screenshot — chat working (streaming + MCP)
 
-<!--
-  One frame showing:
-    - a chat reply that streamed (any model)
-    - one MCP tool call result rendered in the same chat
-  Commit as: chat-mcp.png
--->
 
-![chat-mcp](chat-mcp.png)
+
+![Chat streaming and MCP working](./chat-mcp.png)
 
 ## 5. Public reachability — `curl -sI https://<host>/`
 
-<!--
-  Run from OUTSIDE the EC2 (your laptop). Paste full output.
-  Expected: HTTP/2 200 or 302, valid TLS, Set-Cookie with Secure flag if
-  Casdoor session was hit.
--->
+
 
 ```
-$ curl -sI https://TODO/
-TODO
+$ curl -sI https://52-211-99-217.sslip.io/
+HTTP/2 307
+alt-svc: h3=":443"; ma=2592000
+date: Fri, 29 May 2026 17:38:23 GMT
+location: /chat
+via: 1.1 Caddy
 ```
 
 ## 6. Negative test — port 47000 closed
 
-<!--
-  Run from OUTSIDE the EC2 against the EIP. Paste full output.
-  Expected: connection refused or timed out.
--->
+
 
 ```
-$ curl -v --max-time 5 http://TODO:47000/
-TODO
+$ curl -v --max-time 5 http://52.211.99.217:47000/
+
+Trying 52.211.99.217:47000...
+Connection timed out after 5002 milliseconds
+curl: (28) Connection timed out after 5002 milliseconds
 ```
 
 ## 7. Stack runtime — `docker compose ps`
 
-<!--
-  Run on the EC2. Paste full output.
-  All required services must show Up (healthy where applicable):
-  lobe-chat, casdoor, postgres, minio, qdrant, mcphub, plus your reverse proxy.
--->
+
 
 ```
 $ docker compose ps
-TODO
+NAME              IMAGE                        STATUS
+casdoor           casbin/casdoor:v2.13.0       Up 27 minutes
+hayhooks          deepset/hayhooks:v1.1.0      Up 37 minutes
+hayhooks-mcp      deepset/hayhooks:v1.1.0      Up 37 minutes
+lobe-chat         lobehub/lobe-chat-database   Up 5 minutes
+mcphub            lobechat-aws-mcphub:latest   Up 37 minutes
+minio             minio/minio:latest           Up 8 minutes (healthy)
+qdrant            qdrant/qdrant:latest         Up 37 minutes (healthy)
+shared-postgres   pgvector/pgvector:pg16       Up 37 minutes (healthy)
 ```
