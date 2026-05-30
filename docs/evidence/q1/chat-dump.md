@@ -1,6 +1,3 @@
-
-
-````markdown
 # Q1 — AI chat dump
 
 ## Session 1 — Claude Sonnet 4.5, 2026-05-30 18:30 UTC
