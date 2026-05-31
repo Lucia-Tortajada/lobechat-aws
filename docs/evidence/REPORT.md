@@ -14,8 +14,7 @@
 
 ## 2. Public URL
 
-
-**[https://52-211-99-217.sslip.io]**
+https://52-211-99-217.sslip.io
 
 ## 3. Screenshot — LobeChat over HTTPS, logged in
 
